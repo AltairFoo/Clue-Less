@@ -33,9 +33,9 @@ def stub_1():
     client_tx(c3, 'Player3')
 
     # Each user selects a character
-    client_tx(c1, '1')
-    client_tx(c2, '2')
-    client_tx(c3, '2')
+    client_tx(c1, '1')  # Miss Scarlet
+    client_tx(c2, '2')  # Mrs. White
+    client_tx(c3, '2')  # Mr. Green
 
     # Player 1
     client_tx(c1, '1') # Choose to move
@@ -105,7 +105,16 @@ def stub_1():
 
     # Player 2
     client_tx(c2, '1')  # Choose to move
-    print_response(c2)
+    '''
+    client_tx(c2, 'e1')  # Move to E1
+    client_tx(c2, '1')  # Suggestion
+    client_tx(c2, '1')  # Choose to Miss Scarlet
+    client_tx(c2, '1')  # Choose Candlestick
+    client_tx(c2, '2')  # End Turn
+    '''
+    # print_response(c2)
+
+    # Player 3
 
     time.sleep(1000000)  # Prevents client connections from closing
     # Player 1

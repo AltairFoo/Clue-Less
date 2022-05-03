@@ -90,7 +90,7 @@ class ServerConnectionHandler():
         selection = int(client.recv(3000).decode('utf-8')) # Get the players selection number
         selected_character = available_characters[selection-1]
         available_characters.remove(selected_character) # Player has chosen character, remove it from list
-        client.send(f'You have selected {selected_character}!'.encode('utf-8'))
+        client.send(f'You have selected {selected_character}!\n'.encode('utf-8'))
 
         return selected_character
 

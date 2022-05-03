@@ -40,8 +40,13 @@ class GameManager:
 
         # At the start of a turn, add the following console visuals:
         self.message_player(player,vi.game_map()) # Print the static game map
+        self.message_player(player, vi.ToGUI(self.players)) # colored game map
         self.message_player(player, vi.player_cards(player))# Print a list of the player's cards
         self.message_player(player, vi.extra_cards(self.extra_cards))# Print the extra cards
+
+        your_cards = [c.name for c in player.cards]
+        your_cards = ', '.join(your_cards)
+        self.message_player(player, f"Your cards: {your_cards}")
 
         turn = Turn(player)
         player_options = turn.generate_player_options(player)
@@ -217,9 +222,12 @@ class GameManager:
                     card_to_show = showable_cards[0]
                 else:
                     # Create prompt for card to show
-                    card_show_prompt = "Which card would you like to show? " + showable_cards[0]
+                    # Use offset index for better UX. Should -1 when sending the actual card.
+                    card_show_prompt = "Which card would you like to show? " + showable_cards[0] + "[1]"
+                    showable_cards_index = 1
                     for card_name in showable_cards[1:]:
-                        card_show_prompt = card_show_prompt + " or " + card_name
+                        showable_cards_index += 1
+                        card_show_prompt = card_show_prompt + card_name + "[" + showable_cards_index + "] " 
 
                     self.message_player(showing_player,card_show_prompt)
                     card_to_show = showing_player.client_id.recv(3000).decode('utf-8')
