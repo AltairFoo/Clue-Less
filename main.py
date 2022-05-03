@@ -43,15 +43,15 @@ def main(mode = 'initial'):
     if(mode in ['initial', 'kicked']):
         # Wait for clients to connect
         sch.muster_clients()
-        sch.broadcast(Fore.GREEN + 'All players have joined.' + Style.RESET_ALL)
-        sch.broadcast(vi.game_logo())
+        sch.broadcast('GameReady')
+        # sch.broadcast(vi.game_logo())
 
     available_characters = ['Miss Scarlet', 'Col. Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Prof. Plum']
 
     gi = GameInitializer(sch.users) # Instantiate the GameInitializer module
 
     # Prompt each player to choose a character
-    sch.broadcast('Users will now select their characters when it is their turn..')
+    sch.broadcast('Users will now select their characters when it is their turn..\n')
     counter = 0
     for u in sch.users.items():
         selected_character = sch.choose_character(u[1], available_characters) # Get the players selected character

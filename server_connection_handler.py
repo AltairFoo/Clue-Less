@@ -48,13 +48,13 @@ class ServerConnectionHandler():
         self.server.bind((host, 8080))
         self.server.listen(self.n_players)
 
-    def broadcast(self, msg):
+    def broadcast(self, msg: str):
         '''Send a message to all clients'''
-        print(f"[Broadcast Message] {msg}")
+        print(f"BM_{msg}")
         for c in self.clients:
-            c.send(f"[Broadcast Message] {msg}\n".encode('utf-8'))
+            c.send(f"BM_{msg}".encode('utf-8'))
 
-    def message_client(client, msg):
+    def message_client(client, msg: str):
         '''Send a message to a specific client'''
         client.send(msg.encode('utf-8')) # Message user
 
@@ -69,9 +69,9 @@ class ServerConnectionHandler():
             pbar.update(1)
         pbar.close()
 
-    def assign_username(self, client):
+    def assign_username(self, client: socket.socket):
         '''Request that the client provide a username'''
-        client.send('What would you like your username to be?: '.encode('utf-8'))
+        client.send('AssignUserName'.encode('utf-8'))
         username = client.recv(3000).decode('utf-8')
 
         # TODO implement username validation and checking for duplicates
@@ -80,13 +80,11 @@ class ServerConnectionHandler():
         client.send(f'Welcome, {username}!\n'.encode('utf-8'))
         return username
 
-    def choose_character(self, client, available_characters):
+    def choose_character(self, client: socket.socket, available_characters: list):
         '''Prompt the user to choose an available character'''
-        options = ''
-        for i in enumerate(available_characters):
-            options += f'[{i[0]+1}] {i[1]}\n'
+        options = available_characters
 
-        client.send(f'Please choose a character: \n{options}'.encode('utf-8'))
+        client.send(f'AssignCharacter@{options}'.encode('utf-8'))
         selection = int(client.recv(3000).decode('utf-8')) # Get the players selection number
         selected_character = available_characters[selection-1]
         available_characters.remove(selected_character) # Player has chosen character, remove it from list

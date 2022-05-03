@@ -3,6 +3,7 @@
 # EN.605.601.81.SP22 (Foundations of Software Engineering)
 # Authors: Tenth Floor Cool Kids Club
 # darkmode color design guide: https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129
+# style sheet: https://doc.qt.io/qt-5/stylesheet-reference.html
 
 import sys
 import threading
@@ -20,20 +21,33 @@ _PlayerName = ""
 #endregion global variables
 
 class MainWindow(QMainWindow):
+
+    #region binding pyqtSignal
     s_connect = pyqtSignal(bool)
     s_playerName = pyqtSignal()
+    s_startGame = pyqtSignal()
+    s_assignCharacter = pyqtSignal(list)
+    #endregion binding pyqtSignal
 
     def __init__(self):
         super().__init__()
-        self.ui = uic.loadUi(".\\views\\ClueStart.ui", self)
+        self.ui = uic.loadUi(".\\views\\ClueStart_Main.ui", self)
+        self.intializeComponents()
+        self.signalBinding()
         self.show()
-        # initializer GUI styling and connection
+
+    def intializeComponents(self):
         self.ui.Btn_JoinServer.clicked.connect(self.joinServer)
+        #self.ui.Btn_JoinServer.clicked.connect(self.startGame)
         self.ui.Widget_ConfirmPlayer.setVisible(False)
         self.ui.Btn_ConfirmPlayer.clicked.connect(self.sendPlayerName)
+        self.ui.Widget_GamePlay.setVisible(False)
 
+    def signalBinding(self):
         self.s_connect.connect(self.updateJoinServerGUI)
         self.s_playerName.connect(self.enterPlayerName)
+        self.s_startGame.connect(self.startGame)
+        self.s_assignCharacter.connect(self.pickCharacter)
 
     def closeEvent(self, e):
         global _IsGameSessionJoined
@@ -84,9 +98,6 @@ class MainWindow(QMainWindow):
             _ServerAddress = ""
         pass
 
-    def gameClient_finished(self):
-        print("gameClient_finished")
-
     def enterPlayerName(self):
         print("enterPlayerName")
         self.ui.Widget_JoinServer.setVisible(False)
@@ -103,6 +114,16 @@ class MainWindow(QMainWindow):
         global _PlayerName
         _PlayerName = self.ui.Entry_2.text()
         self.gameClient.tx_server(_PlayerName)
+
+    def startGame(self):
+        self.ui.Widget_GameInit.setVisible(False)
+        self.ui.Widget_GamePlay.setVisible(True)
+        self.show()
+        print("StartGame")
+
+    def pickCharacter(self, characterOptions: list):
+        print("options: ", characterOptions)
+        self.show()
         
 
 app = QApplication(sys.argv)

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Clue-Less Game Client</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #3B3B3B; color: #FFFFFF; font-family: Calibri;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="Widget_GameInit" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QWidget" name="Widget_ConfirmPlayer" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>197</y>
+       <width>640</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>640</width>
+       <height>281</height>
+      </size>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>640</width>
+       <height>281</height>
+      </size>
+     </property>
+     <widget class="QPushButton" name="Btn_ConfirmPlayer">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>170</y>
+        <width>421</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: #626262; color: White</string>
+      </property>
+      <property name="text">
+       <string>Confirm</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Entry_2">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>58</y>
+        <width>421</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Monospac821 BT</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid #9E9E9E;font-family: &quot;Monospac821 BT&quot;;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Label_JoinErrorMsg_2">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>100</y>
+        <width>421</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: Red;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="EntryLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>10</y>
+        <width>145</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #CFCFCF</string>
+      </property>
+      <property name="text">
+       <string>Player Name</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Widget_JoinServer" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>197</y>
+       <width>640</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>640</width>
+       <height>281</height>
+      </size>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>640</width>
+       <height>281</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <widget class="QPushButton" name="Btn_JoinServer">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>170</y>
+        <width>421</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: #626262; color: White</string>
+      </property>
+      <property name="text">
+       <string>Join Server</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Entry">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>58</y>
+        <width>421</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Monospac821 BT</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid #9E9E9E;font-family: &quot;Monospac821 BT&quot;;</string>
+      </property>
+      <property name="text">
+       <string>127.0.0.1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Label_JoinErrorMsg">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>100</y>
+        <width>421</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: Red;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="EntryLabel">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>10</y>
+        <width>145</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #CFCFCF</string>
+      </property>
+      <property name="text">
+       <string>Server Address</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>640</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>640</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>640</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>50</y>
+        <width>531</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../resources/GameTitle_Small.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Widget_GamePlay" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>20</y>
+       <width>201</width>
+       <height>441</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: #B1B1B1; font-size: 16pt; </string>
+     </property>
+     <property name="placeholderText">
+      <string>(notes)</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>381</width>
+       <height>311</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: white;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>150</y>
+        <width>62</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: Black</string>
+      </property>
+      <property name="text">
+       <string>Map!!!</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>350</y>
+       <width>381</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: White</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>50</y>
+        <width>62</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: Black</string>
+      </property>
+      <property name="text">
+       <string>Actions?</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <zorder>Widget_GameInit</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>Widget_GamePlay</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

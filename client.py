@@ -12,14 +12,21 @@ from PyQt6.QtCore import QThread, pyqtSignal, QObject
 class Client(QThread):
     s_connect = pyqtSignal(bool)
     s_playerName = pyqtSignal()
+    s_startGame = pyqtSignal()
+    s_assignCharacter = pyqtSignal(list)
 
     def __init__(self, parent, serverAddress: str):
         super().__init__()
         self.host = serverAddress
         self.gui = parent
         self.connectSocket()
+        self.signalBinding()
+
+    def signalBinding(self):
         self.s_connect.connect(self.gui.s_connect.emit)
         self.s_playerName.connect(self.gui.s_playerName.emit)
+        self.s_startGame.connect(self.gui.s_startGame.emit)
+        self.s_assignCharacter.connect(self.gui.s_assignCharacter.emit)
 
     def connectSocket(self):
         try:
@@ -45,24 +52,37 @@ class Client(QThread):
 
     def rx_server(self):
         '''Receive communication from server.'''
+        '''
+        Changed binding message:
+        1. AssignUserName: What would you like your username to be?: 
+        2. BM_GameReady: [Broadcast Message] All players have joined.
+        3. AssignCharacter@[options]: Please choose a character: \n{options}
+        '''
         while 1:
             try:
                 msg = self.client.recv(3000).decode('utf-8')
                 if msg:
                     if(msg == 'kick'):
-                        #print('You have been disconnected from the server.')
+                        print('You have been disconnected from the server.')
                         self.client.shutdown(socket.SHUT_RDWR)
                         self.client.close()
-                        #establiosh connection again, this is causing error
-                        #self.connectSocket()
                     else:
                         print("Get Command From Server:")
-                        if msg == "What would you like your username to be?: ":
+                        if msg == "AssignUserName":
                             self.s_playerName.emit()
-                        print(msg)
+                        elif msg == "BM_GameReady":
+                            self.s_startGame.emit()
+                        elif "AssignCharacter" in msg:
+                            # process options to list
+                            msg = msg.split("@")[1]
+                            characterOptions = msg.strip("][").replace("'", "").split(', ')
+                            # print("Processed options: ", characterOptions)
+                            self.s_assignCharacter.emit(characterOptions)
+                        else:
+                            print(msg)
                 else:
                     break
             except Exception as rx_error:
-                print('You have been disconnected from the server.')
+                print(rx_error)
                 self.s_connect.emit(False)
                 break
