@@ -37,11 +37,16 @@ class MainWindow(QMainWindow):
         self.show()
 
     def intializeComponents(self):
-        self.ui.Btn_JoinServer.clicked.connect(self.joinServer)
-        #self.ui.Btn_JoinServer.clicked.connect(self.startGame)
+        #region GUI styling
         self.ui.Widget_ConfirmPlayer.setVisible(False)
-        self.ui.Btn_ConfirmPlayer.clicked.connect(self.sendPlayerName)
         self.ui.Widget_GamePlay.setVisible(False)
+        self.ui.Widget_GamePlay_Actions.setVisible(False)
+        self.ui.Widget_GamePlay_PickCharacter.setVisible(False)
+        #endregion GUI styling
+        #region GUI action binding
+        self.ui.Btn_JoinServer.clicked.connect(self.joinServer)
+        self.ui.Btn_ConfirmPlayer.clicked.connect(self.sendPlayerName)
+        #endregion GUI action binding
 
     def signalBinding(self):
         self.s_connect.connect(self.updateJoinServerGUI)
@@ -57,13 +62,11 @@ class MainWindow(QMainWindow):
                 "A game session is connected. Close the game?",
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
             )
-            # the anwser correspond to the button type
             if answer == QMessageBox.StandardButton.Yes:
                 app.quit()
             else:
                 e.ignore()
         else:
-            # straight forward game quit or have a question box.
             app.quit()
 
     def joinServer(self):
@@ -118,12 +121,22 @@ class MainWindow(QMainWindow):
     def startGame(self):
         self.ui.Widget_GameInit.setVisible(False)
         self.ui.Widget_GamePlay.setVisible(True)
-        self.show()
         print("StartGame")
 
     def pickCharacter(self, characterOptions: list):
+        self.ui.PickCharacter_comboBox.addItems(characterOptions)
+        self.ui.Widget_GamePlay_PickCharacter.setVisible(True)
+        self.ui.PickCharacter_ConfirmBtn.clicked.connect(self.confirmPickedCharacter)
         print("options: ", characterOptions)
-        self.show()
+    
+    def confirmPickedCharacter(self, isCanceled: bool):
+        if isCanceled:
+            self.ui.Widget_GamePlay_PickCharacter.setVisible(False)
+        else:
+            selection = QComboBox(self.ui.PickCharacter_comboBox).currentIndex() + 1
+            self.gameClient.tx_server(selection)
+            self.ui.Widget_GamePlay_PickCharacter.setVisible(False)
+        
         
 
 app = QApplication(sys.argv)

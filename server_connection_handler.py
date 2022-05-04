@@ -50,7 +50,7 @@ class ServerConnectionHandler():
 
     def broadcast(self, msg: str):
         '''Send a message to all clients'''
-        print(f"BM_{msg}")
+        print(f"[Broadcast Message] {msg}")
         for c in self.clients:
             c.send(f"BM_{msg}".encode('utf-8'))
 
