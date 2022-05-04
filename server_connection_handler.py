@@ -98,7 +98,6 @@ class ServerConnectionHandler():
         Returns:
             boolean: Whether or not to play again
         '''
-
         play_again_tally = 0
 
         for client in self.clients:
